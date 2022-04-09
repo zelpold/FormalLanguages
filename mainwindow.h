@@ -5,18 +5,18 @@
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class Formal; }
+namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-#include "rehash.h"
+#include "hash.h"
 #include "linkhash.h"
-class Formal : public QMainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    Formal(QWidget *parent = nullptr);
-    ~Formal();
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
 private slots:
     void on_chooseFile_clicked();
@@ -27,8 +27,8 @@ private slots:
 
 private:
     QList<string> list_id;
-    Rehash rehash;
+    Hash hash;
     LinkHash linkhash;
-    Ui::Formal *ui;
+    Ui::MainWindow *ui;
 };
 #endif // FORMAL_H

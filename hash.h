@@ -6,19 +6,20 @@
 #define REHASH_H
 
 #endif // REHASH_H
-const int HASHMAX = 300;
+const int HASHMAX = 398;
+const int HASHMIN = 145;
 using namespace std;
-class Rehash
+class Hash
 {
-    string hashTable[HASHMAX];
+    string hashmap[HASHMAX-HASHMIN]={""};
 
     int searchCount;
 public:
-    Rehash();
-    int hashFunc(string str, int i);
+    //Hash();
+    int gethash(string str, int i);
     bool add(string);
     int search(string);
-    void fill(QList<string> list);
+    void fillhashmap(QList<string> list);
     void clear();
 
 private:

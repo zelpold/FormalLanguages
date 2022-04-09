@@ -1,27 +1,27 @@
-#include "formal.h"
-#include "ui_formal.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 
 #include <QFileDialog>
 #include <QList>
  using namespace std;
-Formal::Formal(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::Formal)
+    , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->maxhash->setText(QString::number(HASHMAX));
 }
 
-Formal::~Formal()
+MainWindow::~MainWindow()
 {
     delete ui;
 }
 
 
-void Formal::on_chooseFile_clicked()
+void MainWindow::on_chooseFile_clicked()
 {
     linkhash.clear();
-    rehash.clear();
+    hash.clear();
     ui->listId->clear();
     QString str = QFileDialog::getOpenFileName();
     QFile file(str);
@@ -44,20 +44,19 @@ void Formal::on_chooseFile_clicked()
                 list_id.append(id.toStdString());
                 ui->listId->addItem(id);
             }
-
         }
     }
     ui->id_num->setText(QString::number(list_id.length()));
-    rehash.fill(list_id);
+    hash.fillhashmap(list_id);
     linkhash.fill(list_id);
     file.close();
 }
 
 
-void Formal::on_searchButton_clicked()
+void MainWindow::on_searchButton_clicked()
 {
     QString search = ui->searchIdEdit->text();
-    int compareCount = rehash.search(search.toStdString());
+    int compareCount = hash.search(search.toStdString());
     int comareCount2 = linkhash.search(search.toStdString());
     ui->compareCount->setText(QString::number(compareCount));
     ui->comareCount2->setText(QString::number(comareCount2));
@@ -68,7 +67,7 @@ void Formal::on_searchButton_clicked()
 }
 
 
-void Formal::on_searchAllButton_clicked()
+void MainWindow::on_searchAllButton_clicked()
 {
     int count = list_id.length();
     int countCompare = 0;
@@ -76,7 +75,7 @@ void Formal::on_searchAllButton_clicked()
 
     for (auto i:list_id)
     {
-        countCompare += rehash.search(i);
+        countCompare += hash.search(i);
         countCompare2 += linkhash.search(i);
     }
     double average = static_cast<double>(countCompare)/static_cast<double>(count);
@@ -85,6 +84,5 @@ void Formal::on_searchAllButton_clicked()
     ui->average->setText(QString::number(average));
     ui->allCompareCount2->setText(QString::number(countCompare2));
     ui->average2->setText(QString::number(average2));
-
 }
 

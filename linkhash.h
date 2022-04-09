@@ -2,7 +2,7 @@
 #ifndef LinkHash_H
 
 #define LinkHash_H
-#include "rehash.h"
+#include "hash.h"
 #include <QString>
 
 

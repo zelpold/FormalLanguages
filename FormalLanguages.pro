@@ -9,18 +9,20 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    binarytree.cpp \
+    hash.cpp \
     linkhash.cpp \
     main.cpp \
-    formal.cpp \
-    rehash.cpp
+    mainwindow.cpp
 
 HEADERS += \
-    formal.h \
+    binarytree.h \
+    hash.h \
     linkhash.h \
-    rehash.h
+    mainwindow.h
 
 FORMS += \
-    formal.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
