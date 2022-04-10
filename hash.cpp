@@ -1,11 +1,24 @@
 #include "hash.h"
+#include <QDebug>
+Hash::Hash()
+{
+    for (int i =0; i < HASHMAX - HASHMIN; i++)
+    {
+        hashmap[i] ="";
+    }
+}
 
 int Hash::gethash(string str, int step)
 {
     int hash;
     int H2 = HASHMAX - HASHMIN;
-    int H1 = H2/2 + 9;
-    hash = ((str[0] + str[str.length()/2-1] + str[str.length()] + str.length() - HASHMIN) + step*H1%H2)%H2;
+    //int H1 = H2/2 + 11;
+    //int H1 = 121; //good
+    int H1 = 137; // best
+    //int H1 = 155; // the best
+
+    hash = ((str[0] + str[str.length()/2-1] + str[str.length() - 1] - HASHMIN) + step*H1%H2)%H2;
+
     return hash;
 }
 
@@ -21,7 +34,9 @@ bool Hash::add(string str)
             hashmap[hash] = str;
             return true;
         }
+        qDebug() << hash << rehash_step;
         rehash_step++;
+
     }
     return false;
 }
@@ -51,8 +66,8 @@ void Hash::fillhashmap(QList<string> list)
 
 void Hash::clear()
 {
-    for (auto i: hashmap)
+    for (int i =0; i < HASHMAX - HASHMIN; i++)
     {
-        i="";
+        hashmap[i] ="";
     }
 }

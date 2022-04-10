@@ -11,14 +11,14 @@ CONFIG += c++11
 SOURCES += \
     binarytree.cpp \
     hash.cpp \
-    linkhash.cpp \
+    hashlinked.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     binarytree.h \
     hash.h \
-    linkhash.h \
+    hashlinked.h \
     mainwindow.h
 
 FORMS += \

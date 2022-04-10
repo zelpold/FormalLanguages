@@ -8,8 +8,9 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+#include "binarytree.h"
 #include "hash.h"
-#include "linkhash.h"
+//#include "linkhash.h"
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -28,7 +29,7 @@ private slots:
 private:
     QList<string> list_id;
     Hash hash;
-    LinkHash linkhash;
+    BinaryTree tree;
     Ui::MainWindow *ui;
 };
 #endif // FORMAL_H

@@ -6,22 +6,19 @@
 #define REHASH_H
 
 #endif // REHASH_H
-const int HASHMAX = 398;
-const int HASHMIN = 145;
+
+const int HASHMAX  = 366;
+const int HASHMIN = 144;
 using namespace std;
 class Hash
 {
-    string hashmap[HASHMAX-HASHMIN]={""};
-
+    string hashmap[HASHMAX-HASHMIN];
     int searchCount;
 public:
-    //Hash();
+    Hash();
     int gethash(string str, int i);
     bool add(string);
     int search(string);
     void fillhashmap(QList<string> list);
     void clear();
-
-private:
-
 };

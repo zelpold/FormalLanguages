@@ -9,7 +9,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->maxhash->setText(QString::number(HASHMAX));
+    ui->maxhash->setText(QString::number(HASHMAX-HASHMIN));
+
 }
 
 MainWindow::~MainWindow()
@@ -20,15 +21,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_chooseFile_clicked()
 {
-    linkhash.clear();
+    tree.clear();
     hash.clear();
     ui->listId->clear();
     QString str = QFileDialog::getOpenFileName();
     QFile file(str);
     QStringList parts = str.split("/");
     QString lastBit = parts.at(parts.size()-1);
-    ui->fileEdit->clear();
-    ui->fileEdit->setText(lastBit);
+
     list_id.clear();
     if (file.open(QIODevice::ReadOnly))
     {
@@ -48,7 +48,7 @@ void MainWindow::on_chooseFile_clicked()
     }
     ui->id_num->setText(QString::number(list_id.length()));
     hash.fillhashmap(list_id);
-    linkhash.fill(list_id);
+    tree.fillTree(list_id);
     file.close();
 }
 
@@ -57,7 +57,7 @@ void MainWindow::on_searchButton_clicked()
 {
     QString search = ui->searchIdEdit->text();
     int compareCount = hash.search(search.toStdString());
-    int comareCount2 = linkhash.search(search.toStdString());
+    int comareCount2 = tree.search(search.toStdString());
     ui->compareCount->setText(QString::number(compareCount));
     ui->comareCount2->setText(QString::number(comareCount2));
     if (compareCount > 0) ui->result->setText("Идентификатор найден");
@@ -76,7 +76,7 @@ void MainWindow::on_searchAllButton_clicked()
     for (auto i:list_id)
     {
         countCompare += hash.search(i);
-        countCompare2 += linkhash.search(i);
+        countCompare2 += tree.search(i);
     }
     double average = static_cast<double>(countCompare)/static_cast<double>(count);
     double average2 = static_cast<double>(countCompare2)/static_cast<double>(count);
