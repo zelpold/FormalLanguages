@@ -6,7 +6,7 @@
 #define REHASH_H
 
 #endif // REHASH_H
-const int HASHMAX = 300;
+const int HASHMAX = 293;
 using namespace std;
 class Rehash
 {

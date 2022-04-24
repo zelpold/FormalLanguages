@@ -11,8 +11,8 @@ Rehash::Rehash()
 int Rehash::hashFunc(string str, int i)
 {
     int hash;
-    hash = ((str[0] + str[1%str.length()] + str[2%str.length()] + str[3%str.length()]-'0'*4)
-            %HASHMAX + i*(HASHMAX/2 + 11)%HASHMAX)%HASHMAX;
+    hash = ((str[0] + str[str.length()/2] + str[str.length()-1] - '0'*3)*i)%293;
+
     return hash;
 }
 bool Rehash::add(string str)

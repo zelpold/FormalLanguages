@@ -1,22 +1,22 @@
 #pragma once
-#ifndef FORMAL_H
-#define FORMAL_H
+#ifndef MainWindow_H
+#define MainWindow_H
 
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class Formal; }
+namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 #include "rehash.h"
 #include "linkhash.h"
-class Formal : public QMainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    Formal(QWidget *parent = nullptr);
-    ~Formal();
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
 private slots:
     void on_chooseFile_clicked();
@@ -29,6 +29,6 @@ private:
     QList<string> list_id;
     Rehash rehash;
     LinkHash linkhash;
-    Ui::Formal *ui;
+    Ui::MainWindow *ui;
 };
-#endif // FORMAL_H
+#endif // MainWindow_H

@@ -1,24 +1,23 @@
-#include "formal.h"
-#include "ui_formal.h"
+#include "MainWindow.h"
+#include "ui_MainWindow.h"
 
 #include <QFileDialog>
 #include <QList>
  using namespace std;
-Formal::Formal(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::Formal)
+    , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->maxhash->setText(QString::number(HASHMAX));
 }
 
-Formal::~Formal()
+MainWindow::~MainWindow()
 {
     delete ui;
 }
 
 
-void Formal::on_chooseFile_clicked()
+void MainWindow::on_chooseFile_clicked()
 {
     linkhash.clear();
     rehash.clear();
@@ -54,7 +53,7 @@ void Formal::on_chooseFile_clicked()
 }
 
 
-void Formal::on_searchButton_clicked()
+void MainWindow::on_searchButton_clicked()
 {
     QString search = ui->searchIdEdit->text();
     int compareCount = rehash.search(search.toStdString());
@@ -68,7 +67,7 @@ void Formal::on_searchButton_clicked()
 }
 
 
-void Formal::on_searchAllButton_clicked()
+void MainWindow::on_searchAllButton_clicked()
 {
     int count = list_id.length();
     int countCompare = 0;

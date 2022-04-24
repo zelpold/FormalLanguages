@@ -16,10 +16,10 @@ int LinkHash::hashFunc(string str)
 {
     int hash;
     hash = (str[0]
-            + str[1%str.length()]
-            + str[2%str.length()]
-            + str[3%str.length()] - '0'*4)
-            % HASHMAX;
+            + str[str.length()/2]
+            + str[str.length()-1]
+            - '0'*3)
+            % 293;
     return hash;
 }
 
